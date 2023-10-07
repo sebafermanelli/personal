@@ -30,15 +30,15 @@ const Nav = () => {
 						About
 					</div>
 				</Link>
-				<Link href="/proyects">
+				<Link href="/projects">
 					<div
 						className={
-							currentPath === '/proyects'
+							currentPath === '/projects'
 								? 'mx-3 border-b border-current'
 								: 'mx-3 text-gray-500 hover:text-current border-b border-transparent transition-all duration-500'
 						}
 					>
-						Proyects
+						Projects
 					</div>
 				</Link>
 				<Link href="/contact">
