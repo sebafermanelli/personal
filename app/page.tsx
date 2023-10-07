@@ -49,7 +49,7 @@ export default function Home() {
 				<div className="my-5 flex gap-14 items-center justify-center">
 					<a
 						href="/sebastian_fermanelli_resume.pdf"
-						download="sebastian_fermanelli_resume.pdf"
+						download="Sebastian Fermanelli Resume.pdf"
 						className="bg-black text-white py-2 px-4 rounded-3xl border border-black hover:bg-transparent hover:text-black transition-all duration-500"
 					>
 						Resume
