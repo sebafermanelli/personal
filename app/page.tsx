@@ -1,6 +1,7 @@
 'use client';
 
-import Button from '@/components/Button';
+import AboutMe from '@/components/AboutMe';
+import TechnologiesImg from '@/components/TechnologiesImg';
 import Image from 'next/image';
 
 export default function Home() {
@@ -13,19 +14,19 @@ export default function Home() {
 
 	const handleContactButton = () => {
 		const contactLink = document.createElement('a');
-		contactLink.href = 'mailto:sebastianfermanelli@gmail.com';
+		contactLink.href = '/contact';
 		contactLink.click();
 	};
 
 	return (
 		<main className="flex-1 h-full w-full p-2">
-			<section className="flex flex-col items-stretch justify-stretch text-justify">
+			<section className="flex flex-col text-justify">
 				<div className="text-xl sm:text-2xl my-2">
-					<h2>Hi there! I'm</h2>
+					<span>Hi there! I'm</span>
 					<h1>
-						<span className="text-2xl sm:text-4xl text-gradient-primary">Sebastian</span>,
+						<span className="text-2xl sm:text-4xl text-gradient-black">Sebastian</span>,
 					</h1>
-					<h2>
+					<span>
 						a Systems Engineering student and a Full Stack developer from
 						<div className="flex">
 							Argentina
@@ -37,142 +38,24 @@ export default function Home() {
 								className="object-contain mx-2"
 							/>
 						</div>
-					</h2>{' '}
-					<h2>
-						Welcome to my <span className="text-gradient-primary">Portfolio</span>!
-					</h2>
+					</span>
 				</div>
 
-				<div className="text-l my-2">
-					<span className="text-xl text-gradient-primary">About me</span>
-					<p>
-						I'm passionate about technology and innovation, constantly diving into new advancements in the tech world.
-						When I'm not coding, I enjoy playing tennis, riding motorcycles, and travel around the world.
-					</p>
-					<br />
-					<p>
-						In my journey as a developer, I've gained experience working with various programming languages like
-						JavaScript, TypeScript, and Java. These languages allow me to create high-quality and high-performance
-						applications. My skill set also have proficiency in frontend and backend frameworks, libraries, and
-						technologies, such as React.js, Next.js, Node.js, Express.js, and Spring, allowing me to accelerate
-						development and elevate user experiences. Also, I acquired expertise in data management utilizing MySQL and
-						MongoDB databases, with data querying tools like Sequelize, JPA, Hibernate, and Mongoose.
-					</p>
-					<br />
-					<p>Feel free to explore my GitHub and connect with me to create innovative solutions!</p>
+				<AboutMe />
+
+				<div className="flex-center gap-14 my-5">
+					<button className="btn-black" onClick={handleDownloadResume}>
+						Resume
+					</button>
+
+					<button className="btn-black" onClick={handleContactButton}>
+						Contact
+					</button>
 				</div>
 
-				<div className="my-5 flex gap-14 items-center justify-center">
-					<Button text="Resume" onClick={handleDownloadResume} />
-
-					<Button text="Contact" onClick={handleContactButton} />
-				</div>
-
-				<div className="my-2 flex flex-col gap-4 items-center justify-center">
-					<span className="text-xl text-gradient-primary">Technologies</span>
-					<div className="flex flex-wrap items-center justify-center">
-						{/* Languages */}
-						<div className="flex items-center justify-center m-4">
-							<Image
-								src="/assets/icons/technologies/js.svg"
-								alt="js logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-
-						<div className="flex items-center justify-center m-4">
-							{' '}
-							<Image
-								src="/assets/icons/technologies/ts.svg"
-								alt="ts logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						<div className="flex items-center justify-center m-4">
-							{' '}
-							<Image
-								src="/assets/icons/technologies/java.svg"
-								alt="java logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						{/* Frontend technologies */}
-						<div className="flex items-center justify-center m-4">
-							<Image
-								src="/assets/icons/technologies/reactjs.svg"
-								alt="reactjs logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						{/* Backend technologies */}
-						<div className="flex items-center justify-center m-4">
-							<Image
-								src="/assets/icons/technologies/nodejs.svg"
-								alt="nodejs logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						<div className="flex items-center justify-center m-4">
-							{' '}
-							<Image
-								src="/assets/icons/technologies/expressjs.svg"
-								alt="expressjs logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						<div className="flex items-center justify-center m-4">
-							{' '}
-							<Image
-								src="/assets/icons/technologies/nextjs.svg"
-								alt="nextjs logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						<div className="flex items-center justify-center m-4">
-							{' '}
-							<Image
-								src="/assets/icons/technologies/spring.svg"
-								alt="spring logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						{/* Data querying technologies */}
-						<div className="flex items-center justify-center m-4">
-							<Image
-								src="/assets/icons/technologies/mysql.svg"
-								alt="mysql logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-						<div className="flex items-center justify-center m-4">
-							{' '}
-							<Image
-								src="/assets/icons/technologies/mongodb.svg"
-								alt="mongodb logo"
-								width={50}
-								height={50}
-								className="object-contain"
-							/>
-						</div>
-					</div>
+				<div className="flex-center flex-col gap-2">
+					<span className="text-xl text-gradient-black">Technologies</span>
+					<TechnologiesImg />
 				</div>
 			</section>
 		</main>

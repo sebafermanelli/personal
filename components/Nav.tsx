@@ -9,48 +9,27 @@ const Nav = () => {
 
 	return (
 		<nav>
-			<section className="flex items-center justify-center p-3">
-				<Image
-					src="/assets/images/logo.svg"
-					alt="sebastian logo"
-					width={40}
-					height={40}
-					className="object-contain hover:rotate-180 transition-all duration-1000"
-				/>
-			</section>
-			<section className="flex items-center justify-center p-3">
+			<section className="flex-center p-3">
 				<Link href="/">
-					<div
-						className={
-							currentPath === '/'
-								? 'mx-3 border-b border-current'
-								: 'mx-3 text-gray-500 hover:text-current border-b border-transparent transition-all duration-500'
-						}
-					>
-						About
-					</div>
+					<Image
+						src="/assets/images/logo.svg"
+						alt="sebastian logo"
+						width={40}
+						height={40}
+						className="object-contain hover:rotate-180 transition-all duration-1000"
+					/>
+				</Link>
+			</section>
+
+			<section className="flex-center p-3">
+				<Link href="/">
+					<div className={currentPath === '/' ? 'nav-item-active' : 'nav-item'}>About</div>
 				</Link>
 				<Link href="/projects">
-					<div
-						className={
-							currentPath === '/projects'
-								? 'mx-3 border-b border-current'
-								: 'mx-3 text-gray-500 hover:text-current border-b border-transparent transition-all duration-500'
-						}
-					>
-						Projects
-					</div>
+					<div className={currentPath === '/projects' ? 'nav-item-active' : 'nav-item'}>Projects</div>
 				</Link>
 				<Link href="/contact">
-					<div
-						className={
-							currentPath === '/contact'
-								? 'mx-3 border-b border-current'
-								: 'mx-3 text-gray-500 hover:text-current border-b border-transparent transition-all duration-500'
-						}
-					>
-						Contact
-					</div>
+					<div className={currentPath === '/contact' ? 'nav-item-active' : 'nav-item'}>Contact</div>
 				</Link>
 			</section>
 		</nav>

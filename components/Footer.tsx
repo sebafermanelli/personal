@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const Footer = () => {
 	return (
-		<footer className="flex items-center p-3">
+		<footer className="flex-center p-3">
 			<a
 				href="https://www.linkedin.com/in/sebastianfermanelli/"
 				className="mx-1 hover:mx-3 transition-all duration-500"
