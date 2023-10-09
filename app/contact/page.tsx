@@ -12,6 +12,7 @@ export default function Home() {
 	const [message, setMessage] = useState('');
 	const [isSubmitted, setSubmitted] = useState(false);
 	const [isError, setError] = useState(false);
+	const [alertMessage, setAlertMessage] = useState('');
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -40,24 +41,28 @@ export default function Home() {
 							} else {
 								setError(true);
 							}
+							console.log(data.message);
+							setAlertMessage(data.message);
 						})
 						.catch((error) => {
-							console.log(error);
 							setError(true);
+							setAlertMessage('There was an error sending');
 						});
 				})
 				.catch((error) => {
 					setError(true);
+					setAlertMessage('There was an error sending');
 				});
 		} catch (error) {
 			setError(true);
+			setAlertMessage('There was an error sending');
 		}
 	};
 
 	return isSubmitted ? (
 		<main className="flex-1 h-full w-full p-2">
 			<div className="flex-center flex-col gap-5">
-				<SuccessMessage message="Thank you for your message!" />
+				<SuccessMessage message={alertMessage} />
 				<Link
 					href="/contact"
 					onClick={() => {
@@ -141,7 +146,7 @@ export default function Home() {
 					</div>
 				</form>
 
-				{isError && <ErrorMessage message="There was an error sending" />}
+				{isError && <ErrorMessage message={alertMessage} />}
 			</section>
 		</main>
 	);
