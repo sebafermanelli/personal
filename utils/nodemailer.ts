@@ -14,13 +14,7 @@ interface EmailParams {
 	message: string;
 }
 
-interface EmailResponse {
-	success: boolean;
-	message?: string;
-	error?: string;
-}
-
-export const sendEmail = async ({ from, subject, message }: EmailParams): Promise<EmailResponse> => {
+export const sendEmail = async ({ from, subject, message }: EmailParams) => {
 	try {
 		const result: SentMessageInfo = await transporter.sendMail({
 			from: from,
@@ -31,9 +25,9 @@ export const sendEmail = async ({ from, subject, message }: EmailParams): Promis
 
 		console.log({ result });
 
-		return { success: true, message: 'Email sent successfully' };
+		return { message: 'Email sent successfully' };
 	} catch (error) {
 		console.error('Error sending email:', error);
-		return { success: false, error: 'There was an error sending the email' };
+		return { error: 'There was an error sending the email' };
 	}
 };

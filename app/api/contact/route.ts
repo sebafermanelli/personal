@@ -1,11 +1,13 @@
 import { sendEmail } from '@/utils/nodemailer';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-	const { name, email, subject, message } = req.body;
+export async function POST(req: NextRequest) {
+	const { name, email, subject, message }: any = req.body;
+
+	console.log({ name, email, subject, message });
 
 	if (!name || !email || !subject || !message) {
-		return res.status(400).json({ message: 'Bad request, missing required fields' });
+		return new Response('Bad request, missing required fields', { status: 404 });
 	}
 
 	try {
@@ -17,11 +19,17 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
         
         ${message}
       `,
-		});
-
-		return res.status(200).json({ message: 'Email sent successfully' });
+		})
+			.then((response) => {
+				console.log(response);
+				return new Response('Email sent successfully', { status: 200 });
+			})
+			.catch((error) => {
+				console.error('Error sending email:', error);
+				return new Response('There was an error sending email', { status: 500 });
+			});
 	} catch (error) {
 		console.error('Error sending email:', error);
-		return res.status(500).json({ message: 'There was an error sending the email' });
+		return new Response('There was an error sending email', { status: 500 });
 	}
 }

@@ -16,25 +16,34 @@ export default function Home() {
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 
+		const data = {
+			name: name,
+			email: email,
+			subject: subject,
+			message: message,
+		};
+
 		try {
-			const response = await fetch('/api/contact', {
+			await fetch('/api/contact', {
 				method: 'POST',
+				body: JSON.stringify(data),
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({
-					name,
-					email,
-					subject,
-					message,
-				}),
-			});
-
-			if (response.ok) {
-				setSubmitted(true);
-			} else {
-				setError(true);
-			}
+			})
+				.then((response) => {
+					if (response.ok) {
+						console.log(response);
+						setSubmitted(true);
+					} else {
+						console.log(response);
+						setError(true);
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+					setError(true);
+				});
 		} catch (error) {
 			console.error('Error:', error);
 			setError(true);
@@ -45,7 +54,7 @@ export default function Home() {
 		<main className="flex-1 h-full w-full p-2">
 			<div className="flex-center flex-col gap-5">
 				<SuccessMessage message="Thank you for your message!" />
-				<Link href="/">
+				<Link href="/contact">
 					<button className="btn-black">Go back</button>
 				</Link>
 			</div>
