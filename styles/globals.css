@@ -82,7 +82,7 @@
 }
 
 .input {
-	@apply outline-none shadow hover:shadow-lg border border-gray-300 bg-gray-100 rounded-2xl px-2 py-1 text-base transition-all duration-500;
+	@apply outline-none shadow hover:shadow-lg border border-gray-300 bg-gray-100 rounded-2xl px-2 py-1 text-base transition-shadow duration-500;
 }
 
 .project {

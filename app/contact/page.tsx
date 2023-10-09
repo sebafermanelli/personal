@@ -32,20 +32,24 @@ export default function Home() {
 				},
 			})
 				.then((response) => {
-					if (response.ok) {
-						console.log(response);
-						setSubmitted(true);
-					} else {
-						console.log(response);
-						setError(true);
-					}
+					const result = response.json();
+					result
+						.then((data) => {
+							if (data.status === 201) {
+								setSubmitted(true);
+							} else {
+								setError(true);
+							}
+						})
+						.catch((error) => {
+							console.log(error);
+							setError(true);
+						});
 				})
 				.catch((error) => {
-					console.error('Error:', error);
 					setError(true);
 				});
 		} catch (error) {
-			console.error('Error:', error);
 			setError(true);
 		}
 	};
@@ -54,7 +58,17 @@ export default function Home() {
 		<main className="flex-1 h-full w-full p-2">
 			<div className="flex-center flex-col gap-5">
 				<SuccessMessage message="Thank you for your message!" />
-				<Link href="/contact">
+				<Link
+					href="/contact"
+					onClick={() => {
+						setSubmitted(false);
+						setError(false);
+						setName('');
+						setEmail('');
+						setSubject('');
+						setMessage('');
+					}}
+				>
 					<button className="btn-black">Go back</button>
 				</Link>
 			</div>

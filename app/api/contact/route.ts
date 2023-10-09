@@ -1,35 +1,37 @@
 import { sendEmail } from '@/utils/nodemailer';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+
+interface ContactProps {
+	name: string;
+	email: string;
+	subject: string;
+	message: string;
+}
 
 export async function POST(req: NextRequest) {
-	const { name, email, subject, message }: any = req.body;
-
-	console.log({ name, email, subject, message });
-
-	if (!name || !email || !subject || !message) {
-		return new Response('Bad request, missing required fields', { status: 404 });
-	}
-
 	try {
-		await sendEmail({
+		const data: ContactProps = await req.json();
+		const { name, email, subject, message } = data;
+
+		if (!name || !email || !subject || !message) {
+			return NextResponse.json({ status: 404, message: 'Missing data' });
+		}
+		const emailContent = `
+		<p>Contact entry from ${name},</p>
+		<p>${email}</p>
+		<br>
+		<p>Message: ${message}</p>
+	`;
+
+		const emailResponse = await sendEmail({
 			from: email,
 			subject: subject,
-			message: `
-        Contact entry from ${name}, ${email}
-        
-        ${message}
-      `,
-		})
-			.then((response) => {
-				console.log(response);
-				return new Response('Email sent successfully', { status: 200 });
-			})
-			.catch((error) => {
-				console.error('Error sending email:', error);
-				return new Response('There was an error sending email', { status: 500 });
-			});
+			message: emailContent,
+		});
+
+		return NextResponse.json({ status: emailResponse.status, message: emailResponse.message });
 	} catch (error) {
 		console.error('Error sending email:', error);
-		return new Response('There was an error sending email', { status: 500 });
+		return NextResponse.json({ status: 500, message: 'There was an error sending' });
 	}
 }
