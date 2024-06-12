@@ -80,8 +80,7 @@ export function ContactForm() {
                 description: "Invalid request",
             });
         }
-
-        console.log(values);
+        form.reset();
     }
 
     return (
