@@ -17,31 +17,30 @@ export function AboutMe() {
             <CardHeader>
                 <CardTitle>About me</CardTitle>
                 <CardDescription>
-                    I'm passionate about technology and innovation, constantly diving into new advancements in the tech
-                    world. When I'm not coding, I enjoy playing tennis, riding motorcycles, and travel around the world.
+                    I love technology and new ideas, always checking out what's new. When I'm not coding, I enjoy
+                    playing tennis, riding motorcycles, and traveling.
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <p>
-                    In my journey as a developer, I bring a versatile skill set to software development, having
-                    experience with JavaScript, TypeScript, and Java to create high-quality applications. My expertise
-                    extends to frontend and backend frameworks such as React.js, Next.js, Node.js, Express.js, Nest.js,
-                    and Spring, enabling accelerated development and improved user experiences. In data management, I
-                    have worked with SQL and NoSQL databases, utilizing tools such as Sequelize, TypeORM, JPA,
-                    Hibernate, MyBatis, and Mongoose. Additionally, I have experience in automation testing for web,
-                    API, and mobile applications, employing tools like TestNG, Selenium, Rest Assured, Appium, and the
-                    Carina framework. This expertise ensures the quality and reliability of the applications
-                    accelerating the development process by quickly identifying potential issues or errors. I am
-                    constantly learning and improving my skills, and I am always excited to take on new challenges in
-                    the world of software development.
+                    As a developer, I bring a versatile skill set to the table, using JavaScript, TypeScript, and Java
+                    to build top-notch applications. I'm familiar with frontend and backend frameworks like React.js,
+                    Next.js, Node.js, Express.js, Nest.js, and Spring, making development faster and user experiences
+                    better. I handle data with SQL and NoSQL databases, using tools like Sequelize, TypeORM, JPA,
+                    Hibernate, MyBatis, and Mongoose. I'm always learning and ready for new challenges in the software
+                    world.
                 </p>
-                <br />
-                <p>Feel free to explore my GitHub and connect with me to create innovative solutions!</p>
             </CardContent>
-            <CardFooter className="flex justify-end">
-                <Button onClick={handleDownloadResume}>
-                    Resume <PinBottomIcon className="ml-2 h-4 w-4" />
-                </Button>
+            <CardFooter className="flex flex-wrap justify-between -mx-2">
+                <div className="w-full md:w-3/4  px-2 pb-2">
+                    <p>Check out my resume and let's team up for creative solutions!</p>
+                </div>
+
+                <div className="w-full md:w-1/4  px-2 pb-2 flex justify-end">
+                    <Button onClick={handleDownloadResume}>
+                        Resume <PinBottomIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                </div>
             </CardFooter>
         </Card>
     );

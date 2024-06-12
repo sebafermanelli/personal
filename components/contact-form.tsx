@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";
-import { EnvelopeOpenIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
+import { PaperPlaneIcon } from "@radix-ui/react-icons";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -87,14 +87,13 @@ export function ContactForm() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Contact me</CardTitle>
-                <CardDescription>Lets get in touch!</CardDescription>
+                <CardTitle>Let's get in touch!</CardTitle>
             </CardHeader>
             <CardContent>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                    <form onSubmit={form.handleSubmit(onSubmit)}>
                         <div className="flex flex-wrap -mx-2">
-                            <div className="w-full md:w-1/2 px-2">
+                            <div className="w-full md:w-1/2 px-2 pb-2">
                                 <FormField
                                     control={form.control}
                                     name="name"
@@ -109,7 +108,7 @@ export function ContactForm() {
                                     )}
                                 />
                             </div>
-                            <div className="w-full md:w-1/2 px-2">
+                            <div className="w-full md:w-1/2 px-2 pb-2">
                                 <FormField
                                     control={form.control}
                                     name="email"
@@ -124,25 +123,24 @@ export function ContactForm() {
                                     )}
                                 />
                             </div>
+                            <div className="w-full px-2 pb-2">
+                                <FormField
+                                    control={form.control}
+                                    name="message"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Message</FormLabel>
+                                            <FormControl>
+                                                <Textarea placeholder="Write your message" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <FormField
-                                control={form.control}
-                                name="message"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Message</FormLabel>
-                                        <FormControl>
-                                            <Textarea placeholder="Write your message" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="flex justify-end">
+                        <div className="flex justify-end pt-2">
                             <Button type="submit">
                                 Submit
                                 <PaperPlaneIcon className="ml-2 h-4 w-4" />
