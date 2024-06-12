@@ -34,7 +34,7 @@ export function ContactForm() {
         defaultValues: {
             name: "",
             email: "",
-            subject: "Contact Form Submission from Portfolio",
+            subject: "Contact Form Submission from Personal Website",
             message: "",
         },
     });
