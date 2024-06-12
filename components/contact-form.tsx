@@ -9,7 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";
-import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import { PaperPlaneIcon, SymbolIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -28,6 +29,7 @@ const formSchema = z.object({
 
 export function ContactForm() {
     const { toast } = useToast();
+    const [loading, setLoading] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -41,46 +43,41 @@ export function ContactForm() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            await fetch("/api/contact", {
+            setLoading(true);
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 body: JSON.stringify(values),
                 headers: {
                     "Content-Type": "application/json",
                 },
-            })
-                .then((response) => {
-                    const result = response.json();
-                    result
-                        .then((data) => {
-                            data.status === 201
-                                ? toast({
-                                      title: data.message,
-                                  })
-                                : toast({
-                                      title: "Error",
-                                      description: data.message,
-                                  });
-                        })
-                        .catch((error) => {
-                            toast({
-                                title: "Error",
-                                description: "Invalid request",
-                            });
-                        });
-                })
-                .catch((error) => {
-                    toast({
-                        title: "Error",
-                        description: "Invalid request",
-                    });
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to submit form");
+            }
+
+            const data = await response.json();
+
+            if (data.status === 201) {
+                toast({
+                    title: data.message,
                 });
+            } else {
+                toast({
+                    title: "Error",
+                    description: data.message,
+                });
+            }
+
+            form.reset();
         } catch (error) {
             toast({
                 title: "Error",
                 description: "Invalid request",
             });
+        } finally {
+            setLoading(false);
         }
-        form.reset();
     }
 
     return (
@@ -140,9 +137,17 @@ export function ContactForm() {
                         </div>
 
                         <div className="flex justify-end pt-2">
-                            <Button type="submit">
-                                Submit
-                                <PaperPlaneIcon className="ml-2 h-4 w-4" />
+                            <Button type="submit" disabled={loading}>
+                                {loading ? (
+                                    <>
+                                        Sending <SymbolIcon className="ml-2 h-4 w-4 animate-spin" />
+                                    </>
+                                ) : (
+                                    <>
+                                        Submit{" "}
+                                        <PaperPlaneIcon className="ml-2 h-4 w-4 transition-transform transform hover:scale-110" />
+                                    </>
+                                )}
                             </Button>
                         </div>
                     </form>

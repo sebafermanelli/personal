@@ -38,7 +38,7 @@ export function AboutMe() {
 
                 <div className="w-full md:w-1/4  px-2 pb-2 flex justify-end">
                     <Button onClick={handleDownloadResume}>
-                        Resume <PinBottomIcon className="ml-2 h-4 w-4" />
+                        Resume <PinBottomIcon className="ml-2 h-4 w-4 transition-transform transform hover:scale-110" />
                     </Button>
                 </div>
             </CardFooter>
