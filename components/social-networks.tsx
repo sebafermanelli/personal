@@ -3,8 +3,8 @@
 import { Menubar } from "@/components/ui/menubar";
 import { Separator } from "./ui/separator";
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@radix-ui/react-tooltip";
-import { Badge } from "./ui/badge";
+// import { p } from "./ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function SocialNetworks() {
     return (
@@ -12,11 +12,11 @@ export function SocialNetworks() {
             <TooltipProvider>
                 <a href="https://www.linkedin.com/in/sebastianfermanelli/" target="_blank">
                     <Tooltip>
-                        <TooltipTrigger asChild>
-                            <LinkedInLogoIcon className="mx-1" />
+                        <TooltipTrigger className="mx-1">
+                            <LinkedInLogoIcon />
                         </TooltipTrigger>
-                        <TooltipContent className="mb-1">
-                            <Badge>LinkedIn</Badge>
+                        <TooltipContent>
+                            <p>LinkedIn</p>
                         </TooltipContent>
                     </Tooltip>
                 </a>
@@ -25,11 +25,11 @@ export function SocialNetworks() {
 
                 <a href="https://github.com/sebafermanelli" target="_blank">
                     <Tooltip>
-                        <TooltipTrigger asChild>
-                            <GitHubLogoIcon className="mx-1" />
+                        <TooltipTrigger className="mx-1">
+                            <GitHubLogoIcon />
                         </TooltipTrigger>
-                        <TooltipContent className="mb-1">
-                            <Badge>GitHub</Badge>
+                        <TooltipContent>
+                            <p>GitHub</p>
                         </TooltipContent>
                     </Tooltip>
                 </a>
@@ -38,11 +38,11 @@ export function SocialNetworks() {
 
                 <a href="https://instagram.com/sebafermanelli" target="_blank">
                     <Tooltip>
-                        <TooltipTrigger asChild>
-                            <InstagramLogoIcon className="mx-1" />
+                        <TooltipTrigger className="mx-1">
+                            <InstagramLogoIcon />
                         </TooltipTrigger>
-                        <TooltipContent className="mb-1">
-                            <Badge>Instagram</Badge>
+                        <TooltipContent>
+                            <p>Instagram</p>
                         </TooltipContent>
                     </Tooltip>
                 </a>
