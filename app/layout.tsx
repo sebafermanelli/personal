@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <Footer />
                             <Toaster />
                         </div>
-                        <BackgroundBeams />
+                        {/* <BackgroundBeams /> */}
                     </div>
                 </ThemeProvider>
             </body>
