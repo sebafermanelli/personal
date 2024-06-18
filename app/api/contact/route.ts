@@ -1,4 +1,4 @@
-import { sendEmail } from "@/utils/nodemailer";
+import { sendEmail } from "@/lib/nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 
 interface ContactProps {

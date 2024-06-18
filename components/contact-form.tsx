@@ -8,8 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";
-import { PaperPlaneIcon, SymbolIcon } from "@radix-ui/react-icons";
+import { ArrowRightIcon, SymbolIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -81,78 +80,73 @@ export function ContactForm() {
     }
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Let's get in touch!</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <div className="flex flex-wrap -mx-2">
-                            <div className="w-full md:w-1/2 px-2 pb-2">
-                                <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Name</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter your name" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                            <div className="w-full md:w-1/2 px-2 pb-2">
-                                <FormField
-                                    control={form.control}
-                                    name="email"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Email</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter your email" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                            <div className="w-full px-2 pb-2">
-                                <FormField
-                                    control={form.control}
-                                    name="message"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Message</FormLabel>
-                                            <FormControl>
-                                                <Textarea placeholder="Write your message" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex justify-end pt-2">
-                            <Button type="submit" disabled={loading}>
-                                {loading ? (
-                                    <>
-                                        Sending <SymbolIcon className="ml-2 h-4 w-4 animate-spin" />
-                                    </>
-                                ) : (
-                                    <>
-                                        Submit{" "}
-                                        <PaperPlaneIcon className="ml-2 h-4 w-4 transition-transform transform hover:scale-110" />
-                                    </>
+        <>
+            <h3 className="font-semibold mb-3">Let's get in touch!</h3>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="col-span-full md:col-span-1">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter your name" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
                                 )}
-                            </Button>
+                            />
                         </div>
-                    </form>
-                </Form>
-            </CardContent>
-        </Card>
+                        <div className="col-span-full md:col-span-1">
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter your email" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-full">
+                            <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Message</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="Write your message" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end mt-3">
+                        <Button type="submit" disabled={loading} variant="outline">
+                            {loading ? (
+                                <>
+                                    Sending <SymbolIcon className="ml-2 h-4 w-4 animate-spin" />
+                                </>
+                            ) : (
+                                <>
+                                    Submit <ArrowRightIcon className="ml-2 h-4 w-4" />
+                                </>
+                            )}
+                        </Button>
+                    </div>
+                </form>
+            </Form>
+        </>
     );
 }

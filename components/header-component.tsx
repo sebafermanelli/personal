@@ -8,23 +8,44 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 export function Header() {
     return (
-        <header className="container mx-auto max-w-screen-xl flex justify-between items-center p-3">
-            <Link href="https://github.com/sebafermanelli" target="_blank" className="flex items-center gap-2">
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger className="mx-1">
-                            <Avatar>
-                                <AvatarImage src="https://github.com/sebafermanelli.png" alt="@sebafermanelli" />
-                                <AvatarFallback>SF</AvatarFallback>
-                            </Avatar>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <h1>@sebafermanelli</h1>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-            </Link>
-            <ModeToggle />
+        <header className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+                <Link href="https://github.com/sebafermanelli" target="_blank">
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger className="m-1">
+                                <Avatar>
+                                    <AvatarImage src="https://github.com/sebafermanelli.png" alt="@sebafermanelli" />
+                                    <AvatarFallback>SF</AvatarFallback>
+                                </Avatar>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <h2>@sebafermanelli</h2>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                </Link>
+                <h1 className="font-semibold">Sebastian Fermanelli</h1>
+            </div>
+
+            <div className="flex items-center gap-3">
+                <Link href="https://github.com/Venedicto" target="_blank">
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger className="m-1">
+                                <Avatar>
+                                    <AvatarImage src="https://github.com/venedicto.png" alt="@venedicto" />
+                                    <AvatarFallback>VD</AvatarFallback>
+                                </Avatar>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <h2>@venedicto</h2>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                </Link>
+                <ModeToggle />
+            </div>
         </header>
     );
 }
